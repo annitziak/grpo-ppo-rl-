@@ -2,8 +2,27 @@
 
 This is a personal and experimental (for fun 😊)repository implements Proximal Policy Optimization (PPO) to train an agent on CartPole-v1 using PyTorch and Gymnasium. 
 
-Recap : The main differences between PPO and GRPO
-GRPO used the KL divergence regularization instead of clipping in PPO. This results in more stable updates and controls the policy shifts
+📊 Recap 
+The main differences between PPO and GRPO GRPO used the KL divergence regularization instead of clipping in PPO. This results in more stable updates and controls the policy shifts. **GRPO** tends to be **more stable**, but may learn **more slowly** compared to PPO due to stricter constraints.
+
+### **PPO (Proximal Policy Optimization)**
+Optimizes the objective with **clipping** to restrict large updates:
+
+\[ J_{\text{PPO}}(\theta) = \mathbb{E}_t \left[ \min \left( r_t(\theta) A_t, \text{clip} (r_t(\theta), 1 - \epsilon, 1 + \epsilon) A_t \right) \right] \]
+
+where:
+- \( r_t(\theta) = \frac{\pi_{\theta}(a_t | s_t)}{\pi_{\theta_{\text{old}}}(a_t | s_t)} \) is the **probability ratio**.
+- \( A_t \) is the **advantage estimate**.
+- \( \epsilon \) is the **clipping range** (e.g., 0.2).
+
+### **GRPO (Generalized Reinforcement Policy Optimization)**
+Uses **KL divergence** instead of clipping to constrain policy updates:
+
+\[ J_{\text{GRPO}}(\theta) = \mathbb{E}_t \left[ r_t(\theta) A_t - \beta D_{\text{KL}}(\pi_{\theta} || \pi_{\theta_{\text{old}}}) \right] \]
+
+where:
+- \( D_{\text{KL}}(\pi_{\theta} || \pi_{\theta_{\text{old}}}) \) is the **KL divergence penalty**.
+- \( \beta \) controls the **strength of KL regularization**.
 
 📊Training Insights
 
