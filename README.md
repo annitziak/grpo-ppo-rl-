@@ -2,12 +2,16 @@
 
 This is a personal and experimental (for fun 😊)repository implements Proximal Policy Optimization (PPO) to train an agent on CartPole-v1 using PyTorch and Gymnasium. 
 
+Recap : The main differences between PPO and GRPO
+GRPO used the KL divergence regularization instead of clipping in PPO. This results in more stable updates and controls the policy shifts
+
 📊Training Insights
 
 The mean reward plot shows rapid learning, reaching near-optimal performance (500 reward) within ~100 episodes.
 The confidence interval plot (below) highlights the reward variance across the 5 training runs of 200 episodes.
 
 ![training](plots/confidence_interval.png)
+
 
 
 
